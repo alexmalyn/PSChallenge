@@ -17,7 +17,7 @@ CXX           = g++
 DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++11 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../../PSChallenge-Console-Linux -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
+INCPATH       = -I../../PSChallenge-Console-Linux -I. -isystem /usr/local/include/opencv4 -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt5/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = PSChallenge-Console-Linux1.0.0
 DISTDIR = /media/alexm/data/Coding/Qt/PSChallenge-Console-Linux/build/.tmp/PSChallenge-Console-Linux1.0.0
 LINK          = g++
 LFLAGS        = 
-LIBS          = $(SUBLIBS) /usr/lib/x86_64-linux-gnu/libQt5Core.so -lpthread   
+LIBS          = $(SUBLIBS) -Lusr/local/lib/ -lopencv_core -lopencv_imgproc -lopencv_highgui -lopencv_imgcodecs /usr/lib/x86_64-linux-gnu/libQt5Core.so -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -389,18 +389,9 @@ main.o: ../main.cpp ../imagetransformer.h
 
 ####### Install
 
-install_target: first FORCE
-	@test -d $(INSTALL_ROOT)/opt/PSChallenge-Console-Linux/bin || mkdir -p $(INSTALL_ROOT)/opt/PSChallenge-Console-Linux/bin
-	-$(QINSTALL_PROGRAM) $(QMAKE_TARGET) $(INSTALL_ROOT)/opt/PSChallenge-Console-Linux/bin/$(QMAKE_TARGET)
+install:  FORCE
 
-uninstall_target: FORCE
-	-$(DEL_FILE) $(INSTALL_ROOT)/opt/PSChallenge-Console-Linux/bin/$(QMAKE_TARGET)
-	-$(DEL_DIR) $(INSTALL_ROOT)/opt/PSChallenge-Console-Linux/bin/ 
-
-
-install: install_target  FORCE
-
-uninstall: uninstall_target  FORCE
+uninstall:  FORCE
 
 FORCE:
 

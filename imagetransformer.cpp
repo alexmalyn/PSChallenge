@@ -1,12 +1,21 @@
 #include <iostream>
+#include <stdexcept>
+
 #include "imagetransformer.h"
 
-ImageTransformer::ImageTransformer( char* filename[])
+using namespace cv;
+
+ImageTransformer::ImageTransformer( char* filepath)
 {
-    std::cout << "In constructor, filename: " << filename << std::endl;
-//    std::cout << "ImageTransformer is running.\nPlease specify an image filename with the extension.\n";
-//    std::cin >> filename;
-//    std::cout << filename << std::endl;
+    std::cout << "In constructor, filename: " << filepath << std::endl;
+    try {
+        image = imread(filepath, IMREAD_COLOR); //converted to BGR
+        if (image.data == NULL)
+            throw "Image could not be read. Adjust path or use a different image.\n";
+    }  catch (const char* e) {
+        fprintf(stderr,"%s",e);
+        exit(1);
+    }
 
 }
 
