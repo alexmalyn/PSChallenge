@@ -1,12 +1,10 @@
-#include <QCoreApplication>
 #include <iostream>
 
 #include "imagetransformer.h"
+#include "colorspaceimage.h"
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
-
     try {
         if (argc != 2)
             throw "Incorrect argument count.\n";
@@ -15,17 +13,17 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    ImageTransformer* mTransformer = new ImageTransformer(argv[1]);
+    ImageTransformer* _Transformer = new ImageTransformer();
 
+    ColorspaceImage* _RGBImage = new ColorspaceImage(argv[1]);
+    ColorspaceImage* _YUVImage = _Transformer->convertRGBToYUV(*_RGBImage);
+    _Transformer->adjustSatYUV(*_YUVImage);
+    _RGBImage = _Transformer->convertYUVToRGB(*_YUVImage);
+    _RGBImage->saveImage();
 
-    //mTransformer->adjustSatRGB();
-    //mTransformer->showOriginalChannels();
-    mTransformer->convertRGBToYCbCr();
-    mTransformer->adjustSatYCbCr();
-    mTransformer->convertYCbCrToRGB();
-    mTransformer->showImage();
+    delete _RGBImage;
+    delete _YUVImage;
+    delete _Transformer;
 
-    delete mTransformer;
-
-    return a.exec();
+    return 0;
 }
