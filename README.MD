@@ -1,7 +1,7 @@
 
 # Summary
 
-A CLI tool that allows a user to change the saturation of an image and save it. Just specify a file path and a saturation % change. Colorspaces are automatically converted in the underlying source.
+A CLI tool that allows a user to change the saturation of an image and save it. Just specify a file path and a saturation % change. Values less than a 100 will decrease the saturation and values greater than 100 will increase the saturation. Colorspaces are automatically converted in the underlying source. 
 
 Written in C++ using OpenCV.
 
@@ -34,6 +34,10 @@ Might need to include ` --no-check-certificate` for unverified github certificat
 ### Installing to /usr/local/
 `sudo make install` 
 
+**QMake**
+
+### Install QMake
+`sudo apt install qt5-qmake qt5-default`
 
 ## Building Source
 Navigate to source directory PSChallenge-Console-Linux/
