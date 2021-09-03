@@ -30,13 +30,13 @@ Might need to include ` --no-check-certificate` for unverified github certificat
 ### Configure
 `cmake  ../opencv-master`
 ### Build
-`cmake --build .` don't forget the '.'
+`cmake --build .` don't forget the '.' (Can take very long, upwards of half an hour).
 ### Installing to /usr/local/
-`sudo make install`
+`sudo make install` 
 
 
 ## Building Source
-
+Navigate to source directory PSChallenge-Console-Linux/
 ### Build the makefile
 `qmake PSChallenge-Console-Linux.pro`
 ### Build output
