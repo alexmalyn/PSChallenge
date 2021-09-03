@@ -6,9 +6,11 @@ CONFIG -= app_bundle
 DEFINES += QT_DEPRECATED_WARNINGS
 
 HEADERS += \
+    colorspaceimage.h \
     imagetransformer.h
 
 SOURCES += \
+        colorspaceimage.cpp \
         imagetransformer.cpp \
         main.cpp
 
