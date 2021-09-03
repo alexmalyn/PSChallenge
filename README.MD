@@ -9,7 +9,7 @@ Written in C++ using OpenCV.
 
 ## Prerequisites
 
-**OpenCV**
+### OpenCV
 
 If you already have openCV, ensure that the library include locations as well as the header include locations are set to your installation.
 
@@ -19,24 +19,24 @@ If you already have openCV, ensure that the library include locations as well as
 
 If you do not have openCV installed, then follow these instructions to build from source.
 
-### Install minimal prerequisites (Ubuntu 18.04 as reference)
+#### Install minimal prerequisites (Ubuntu 18.04 as reference)
 `sudo apt update && sudo apt install -y cmake g++ wget unzip`
-### Download and unpack sources
+#### Download and unpack sources
 `wget -O opencv.zip https://github.com/opencv/opencv/archive/master.zip`
 Might need to include ` --no-check-certificate` for unverified github certificate.
 `unzip opencv.zip`
-### Create build directory
+#### Create build directory
 `mkdir -p build && cd build`
-### Configure
+#### Configure
 `cmake  ../opencv-master`
-### Build
+#### Build
 `cmake --build .` don't forget the '.' (Can take very long, upwards of half an hour).
-### Installing to /usr/local/
+#### Installing to /usr/local/
 `sudo make install` 
 
-**QMake**
+### QMake
 
-### Install QMake
+#### Install QMake
 `sudo apt install qt5-qmake qt5-default`
 
 ## Building Source
