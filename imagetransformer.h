@@ -6,12 +6,24 @@
 
 class ImageTransformer
 {
-    cv::Mat image;
+    //never modified, only initialized
+    cv::Mat Image;
+
+    //modified Image/Channels
+    cv::Mat transformedImage;
+    cv::Mat transformedImageChannels[3];
 
 public:
     ImageTransformer( char* filepath);
     ~ImageTransformer();
 
+    void show() const;
+    void reset(); //reset transformedImage to original Image
+    void save();
+
+    void convertToYCbCr();
+    void adjustSaturationYCbCr();
+    void convertToRGB();
 
 
 };

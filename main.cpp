@@ -17,6 +17,10 @@ int main(int argc, char *argv[])
 
     ImageTransformer* mTransformer = new ImageTransformer(argv[1]);
 
+    mTransformer->show();
+    mTransformer->convertToYCbCr();
+    //mTransformer->show();
+
 
     delete mTransformer;
 
