@@ -3,6 +3,8 @@
 
 A CLI tool that allows a user to change the saturation of an image and save it. Just specify a file path and a saturation % change. Colorspaces are automatically converted in the underlying source.
 
+Written in C++ using OpenCV.
+
 # Installation/Build Instructions
 
 ## Prerequisites
