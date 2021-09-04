@@ -23,7 +23,9 @@ If you do not have openCV installed, then follow these instructions to build fro
 `sudo apt update && sudo apt install -y cmake g++ wget unzip`
 #### Download and unpack sources
 `wget -O opencv.zip https://github.com/opencv/opencv/archive/master.zip`
+
 Might need to include ` --no-check-certificate` for unverified github certificate.
+
 `unzip opencv.zip`
 #### Create build directory
 `mkdir -p build && cd build`
