@@ -34,9 +34,9 @@ Might need to include ` --no-check-certificate` for unverified github certificat
 #### Installing to /usr/local/
 `sudo make install` 
 
-### QMake
+### QMake/Qt
 
-#### Install QMake
+#### Install QMake/Qt
 `sudo apt install qt5-qmake qt5-default`
 
 ## Building Source
