@@ -35,8 +35,8 @@ void ColorspaceImage::saveImage()
 
         do {
             std::cout << "Specify a full path to the file with the extension.\n" \
-                        "Type 'default' to save it in assets/ or " \
-                        "'exit' at any time to continue without saving." << std::endl;
+                        "Type 'exit' at any time to continue without saving." \
+                        << std::endl;
             std::cin >> location;
             if (location == "exit")
                 break;
