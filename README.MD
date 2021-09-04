@@ -65,10 +65,16 @@ Navigate to source directory PSChallenge-Console-Linux/
 `docker exec -ti challenge sh`
 ### Run the program
 If you would like to use your own local image files, you can copy them over by starting another terminal:
+
 `docker cp "path/to/Image" challenge:"/usr/src/PSChallenge/assets"`
+
 Then run the program in the container terminal:
+
 `./PSChallenge-Console-Linux assets/{imageName.imageEXT}`
+
 There are also other images in the assets folder by default.
+
 To see these images (if you chose to save), copy them back to your host machine in the other terminal: (Assuming you saved it in assets/)
+
 `docker cp challenge:"/usr/src/PSChallenge/assets/{imageName.imageEXT}" "destination/path/{imageName.imageEXT}"`
 
