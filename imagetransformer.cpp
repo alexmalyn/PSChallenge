@@ -11,6 +11,9 @@ ImageTransformer::ImageTransformer()
     std::cout << "Transformer initialized." << std::endl;
 }
 
+//Colorspace conversions involving YUV are performed formulaically using PAL/NTSC standards
+//while colorspace conversions involving HSV are performed using openCV's cvtColor() function.
+
 ColorspaceImage* ImageTransformer::convertRGBToYUV(ColorspaceImage& src)
 {
     std::vector<Mat> channels = src.getChannels();
