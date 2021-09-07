@@ -60,7 +60,7 @@ Navigate to source directory PSChallenge-Console-Linux/
 ### Pull the image
 `docker pull alexmalyn99/pschallenge`
 ### Start the container
-`docker run -ti -d --name challenge alexmalyn99/pschallenge sh`
+`docker run -ti -d --name challenge alexmalyn99/pschallenge`
 ### Access the container
 `docker exec -ti challenge sh`
 ### Run the program
@@ -74,7 +74,7 @@ Then run the program in the container terminal:
 
 There are also other images in the assets folder by default.
 
-To see these images (if you chose to save), copy them back to your host machine in the other terminal: (Assuming you saved it in assets/)
+To see these images in a container, you must save them and copy them back to your host machine in the other terminal: (Assuming you saved it in assets/)
 
 `docker cp challenge:"/usr/src/PSChallenge/assets/{imageName.imageEXT}" "destination/path/{imageName.imageEXT}"`
 
