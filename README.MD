@@ -1,7 +1,7 @@
 
 # Summary
 
-A GUI tool that allows a user to change the saturation of an image and save it. Browse for an image, adjust the saturation, and optionally save it. A Value of 100% will double the saturation, while a value of 0% will make the image B/W.
+A GUI tool that allows a user to change the saturation of an image and save it. Browse for an image, adjust the saturation, and optionally save it. A Value of 100% will double the saturation, while a value of 0% will make the image B/W. Colorspaces are converted automatically using openCV. Unfortunately, the manual formulas that worked in the CLI version, using PAL/NTSC standard values, do not work in the GUI version. cv::cvtColor was used instead.
 
 Written in C++ using OpenCV.
 
