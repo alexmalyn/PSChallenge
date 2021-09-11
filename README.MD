@@ -46,16 +46,16 @@ Might need to include ` --no-check-certificate` for unverified github certificat
 `sudo apt install qt5-qmake qt5-default`
 
 ## Building Source
-Navigate to source directory PSChallenge-Console-Linux/
+Navigate to source directory PSChallenge-GUI-Linux/
 ### Build the makefile
-`qmake PSChallenge-Console-Linux.pro`
+`qmake PSChallenge-GUI-Linux.pro`
 ### Build output
 `make`
 
 #### Get an image to use. Some are already provided in /assets/: tiger.jpeg , colors.png
 
 ### Run with filename as 2nd argument.
-`./PSChallenge-Console-Linux assets/tiger.jpeg`
+`./build/PSChallenge-GUI-Linux`
 
 ## Docker 
 
@@ -72,7 +72,7 @@ If you would like to use your own local image files, you can copy them over by s
 
 Then run the program in the container terminal:
 
-`./PSChallenge-Console-Linux assets/{imageName.imageEXT}`
+`./PSChallenge-Console-Linux`
 
 There are also other images in the assets folder by default.
 

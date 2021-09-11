@@ -51,7 +51,7 @@ void MainWindow::satChanged()
 void MainWindow::openFile()
 {
     fileName = QFileDialog::getOpenFileName(this,
-       tr("Open Image"), "/home", tr("Image Files (*.png *.jpg *.bmp *.jpeg)"));
+       tr("Open Image"), "/home", tr("Image Files (*.png *.jpg *.jpeg *.bmp *.tiff)"));
     if (fileName.isEmpty())
         return;
 
@@ -79,10 +79,17 @@ void MainWindow::initColorspaces()
 void MainWindow::saveFile()
 {
     savefileName = QFileDialog::getSaveFileName(this,
-       tr("Save Image"), QString(), tr("Images (*.png *.jpg *.jpeg *.bmp)"));
+       tr("Save Image"), QString(), tr("Images (*.png *.jpg *.jpeg *.bmp *.tiff)"));
     if (!savefileName.isEmpty())
     {
-        img = NewRGBImage.asQImage(); //works here
+        cv::Mat tempImg;
+        NewRGBImage.getImage().convertTo(tempImg, CV_8U);
+        cvtColor(tempImg, tempImg, cv::COLOR_BGR2RGB);
+
+        img = QImage((unsigned char*)tempImg.data,
+                     tempImg.cols,
+                     tempImg.rows,
+                     QImage::Format_RGB888);
         img.save(savefileName);
     }
 }
