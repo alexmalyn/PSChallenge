@@ -7,12 +7,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 HEADERS += \
     colorspaceimage.h \
-    imagetransformer.h
+    imagetransformer.h \
+    mainwindow.h
 
 SOURCES += \
         colorspaceimage.cpp \
         imagetransformer.cpp \
-        main.cpp
+        main.cpp \
+        mainwindow.cpp
 
 INCLUDEPATH += \
         /usr/local/include/opencv4
@@ -27,5 +29,10 @@ RESOURCES +=
 win32:CONFIG(release, debug|release): LIBS += -Lusr/local/lib/release/ -lopencv_core -lopencv_imgproc -lopencv_highgui -lopencv_imgcodecs
 else:win32:CONFIG(debug, debug|release): LIBS += -Lusr/local/lib/debug/ -lopencv_core -lopencv_imgproc -lopencv_highgui -lopencv_imgcodecs
 else:unix: LIBS += -Lusr/local/lib/ -lopencv_core -lopencv_imgproc -lopencv_highgui -lopencv_imgcodecs
+
+QT += widgets
+
+FORMS += \
+    mainwindow.ui
 
 

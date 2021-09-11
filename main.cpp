@@ -1,10 +1,15 @@
-#include <iostream>
-
+#include <QApplication>
+#include "mainwindow.h"
 #include "imagetransformer.h"
 #include "colorspaceimage.h"
 
 int main(int argc, char *argv[])
 {
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+    return a.exec();
+
     try {
         if (argc != 2)
             throw "Incorrect argument count.\n";
