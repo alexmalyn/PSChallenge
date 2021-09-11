@@ -6,6 +6,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    QImage myImage;
+    myImage.load("../assets/tiger.jpeg");
+    ui->ImageDisplay->setPixmap(QPixmap::fromImage(myImage.scaledToHeight(510)));
+
+
 }
 
 MainWindow::~MainWindow()
