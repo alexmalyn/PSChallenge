@@ -7,6 +7,8 @@ Written in C++ using OpenCV.
 
 # Installation/Build Instructions
 
+IMPORTANT: *If you have Docker and would rather run a container with everything already installed, skip to the Docker section at the end*
+
 ## Prerequisites
 
 ### OpenCV
@@ -53,4 +55,26 @@ Navigate to source directory PSChallenge-Console-Linux/
 ### Run with filename as 2nd argument.
 `./PSChallenge-Console-Linux assets/tiger.jpeg`
 
+## Docker 
+
+### Pull the image
+`docker pull alexmalyn99/pschallenge`
+### Start the container
+`docker run -ti -d --name challenge alexmalyn99/pschallenge`
+### Access the container
+`docker exec -ti challenge sh`
+### Run the program
+If you would like to use your own local image files, you can copy them over by starting another terminal:
+
+`docker cp "path/to/Image" challenge:"/usr/src/PSChallenge/assets"`
+
+Then run the program in the container terminal:
+
+`./PSChallenge-Console-Linux assets/{imageName.imageEXT}`
+
+There are also other images in the assets folder by default.
+
+To see these images in a container, you must save them and copy them back to your host machine in the other terminal: (Assuming you saved it in assets/)
+
+`docker cp challenge:"/usr/src/PSChallenge/assets/{imageName.imageEXT}" "destination/path/{imageName.imageEXT}"`
 
