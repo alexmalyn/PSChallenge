@@ -1,12 +1,13 @@
 
 # Summary
 
-A CLI tool that allows a user to change the saturation of an image and save it. Just specify a file path and a saturation % change. Values less than a 100 will decrease the saturation and values greater than 100 will increase the saturation. There is no cap on saturation. Colorspaces are automatically converted in the underlying source. 
+A GUI tool that allows a user to change the saturation of an image and save it. Browse for an image, adjust the saturation, and optionally save it. A Value of 100% will double the saturation, while a value of 0% will make the image B/W.
 
 Written in C++ using OpenCV.
 
 # Installation/Build Instructions
 
+Docker Repo has not been updated for use with the GUI tool, it still contains the old CLI format.
 IMPORTANT: *If you have Docker and would rather run a container with everything already installed, skip to the Docker section at the end*
 
 ## Prerequisites
