@@ -5,6 +5,10 @@ A GUI tool that allows a user to change the saturation of an image and save it. 
 
 Written in C++ using OpenCV.
 
+# Demo
+
+https://streamable.com/029c4z
+
 # Installation/Build Instructions
 
 Docker Repo has not been updated for use with the GUI tool, it still contains the old CLI format.
