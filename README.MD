@@ -8,6 +8,7 @@ Written in C++ using OpenCV.
 # Installation/Build Instructions
 
 Docker Repo has not been updated for use with the GUI tool, it still contains the old CLI format.
+
 IMPORTANT: *If you have Docker and would rather run a container with everything already installed, skip to the Docker section at the end*
 
 ## Prerequisites
