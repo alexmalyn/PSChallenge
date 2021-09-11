@@ -12,19 +12,15 @@ class ImageTransformer
     double Umax = 0.436;
     double Vmax = 0.615;
 
-    double satAdjustment;
-
 public:
     ImageTransformer( );
     ~ImageTransformer();
 
-    void save();
-    void adjustSatYUV(ColorspaceImage& src);
+    void adjustSatYUV(ColorspaceImage& src, const int satAdjustment);
 
     ColorspaceImage* convertRGBToYUV(ColorspaceImage& src);
     ColorspaceImage* convertYUVToRGB(ColorspaceImage& src);
-    ColorspaceImage* convertRGBToHSV(ColorspaceImage& src);
-    ColorspaceImage* convertHSVToRGB(ColorspaceImage& src);
+    ColorspaceImage* convertAnything(ColorspaceImage& src, const cv::ColorConversionCodes code);
 
 };
 

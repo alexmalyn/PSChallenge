@@ -1,7 +1,4 @@
-#include <iostream>
-#include <stdexcept>
 #include <vector>
-
 #include "imagetransformer.h"
 
 using namespace cv;
@@ -13,6 +10,7 @@ ImageTransformer::ImageTransformer()
 
 //Colorspace conversions involving YUV are performed formulaically using PAL/NTSC standards
 //while colorspace conversions involving HSV are performed using openCV's cvtColor() function.
+//These are not used in the GUI version.
 
 ColorspaceImage* ImageTransformer::convertRGBToYUV(ColorspaceImage& src)
 {
@@ -65,62 +63,63 @@ ColorspaceImage* ImageTransformer::convertYUVToRGB(ColorspaceImage& src)
     return result;
 }
 
-ColorspaceImage* ImageTransformer::convertRGBToHSV(ColorspaceImage& src)
+ColorspaceImage* ImageTransformer::convertAnything(ColorspaceImage& src, const ColorConversionCodes code)
 {
     ColorspaceImage* result = new ColorspaceImage();
 
     Mat convertedImage;
     std::vector<Mat> channels;
-    cvtColor(src.getImage(), convertedImage, COLOR_RGB2HSV);
+    cvtColor(src.getImage(), convertedImage, code);
     split(convertedImage, channels);
 
     result->setImage(convertedImage);
     result->setChannels(channels);
 
-    //std::cout << "Done converting RGB to HSV." << std::endl;
     return result;
 }
 
-ColorspaceImage* ImageTransformer::convertHSVToRGB(ColorspaceImage& src)
+void ImageTransformer::adjustSatYUV(ColorspaceImage &src, const int satAdjustment)
 {
-    ColorspaceImage* result = new ColorspaceImage();
-
-    Mat convertedImage;
-    std::vector<Mat> channels;
-    cvtColor(src.getImage(), convertedImage, COLOR_HSV2RGB);
-    split(convertedImage, channels);
-
-    result->setImage(convertedImage);
-    result->setChannels(channels);
-
-    //std::cout << "Done converting HSV to RGB." << std::endl;
-    return result;
-}
-
-void ImageTransformer::adjustSatYUV(ColorspaceImage& src)
-{
-    do {
-        std::cout << "Enter a saturation value >= 0%" << std::endl;
-        std::cin >> satAdjustment;
-    } while(satAdjustment < 0);
-
-    ColorspaceImage localRGB = *convertYUVToRGB(src);
-    ColorspaceImage localHSV = *convertRGBToHSV(localRGB);
+    ColorspaceImage localRGB = *convertAnything(src, COLOR_YUV2RGB);
+    ColorspaceImage localHSV = *convertAnything(localRGB, COLOR_RGB2HSV);
 
     std::vector<Mat> HSVChannels = localHSV.getChannels();
     Mat newImage;
 
-    HSVChannels[1] *= satAdjustment / 100;
+    HSVChannels[1] *= satAdjustment / 50.0;
     merge(HSVChannels, newImage);
 
     localHSV.setChannels(HSVChannels);
     localHSV.setImage(newImage);
 
-    localRGB = *convertHSVToRGB(localHSV);
-    src = *convertRGBToYUV(localRGB);
+    localRGB = *convertAnything(localHSV, COLOR_HSV2RGB);
+    src = *convertAnything(localRGB, COLOR_RGB2YUV);
 
-    std::cout << "Saturation adjustments applied." << std::endl;
+    //std::cout << "Saturation adjustments applied." << std::endl;
 }
+
+//manual YUV conversions not working for QImage purposes.
+//void ImageTransformer::adjustSatYUV(ColorspaceImage& src, const int satAdjustment)
+//{
+//    ColorspaceImage localRGB = *convertYUVToRGB(src);
+//    ColorspaceImage localHSV = *convertRGBToHSV(localRGB);
+
+//    std::vector<Mat> HSVChannels = localHSV.getChannels();
+//    Mat newImage;
+
+//    //HSVChannels[1] = satAdjustment / 100 * 100;
+//    merge(HSVChannels, newImage);
+
+//    localHSV.setChannels(HSVChannels);
+//    localHSV.setImage(newImage);
+
+//    localRGB = *convertHSVToRGB(localHSV);
+//    src = *convertRGBToYUV(localRGB);
+
+//    std::cout << "Saturation adjustments applied." << std::endl;
+//}
+
+
 
 ImageTransformer::~ImageTransformer()
 {

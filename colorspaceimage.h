@@ -2,6 +2,8 @@
 #define COLORSPACEIMAGE_H
 #include <opencv4/opencv2/opencv.hpp>
 #include <vector>
+#include <QString>
+#include <QImage>
 
 class ColorspaceImage
 {
@@ -10,11 +12,13 @@ class ColorspaceImage
 
 public:
     ColorspaceImage() { }
-    ColorspaceImage(char* filepath);
+    ColorspaceImage(const QString* filePath);
     ~ColorspaceImage();
     //void operator=(const ColorspaceImage &src);
-    void saveImage();
-    void showImage() const;
+    //void saveImage();
+    //void showImage() const;
+
+    QImage asQImage();
 
     //getters
     std::vector<cv::Mat> getChannels() const;

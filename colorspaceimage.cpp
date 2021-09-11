@@ -3,12 +3,12 @@
 #include "colorspaceimage.h"
 using namespace cv;
 
-ColorspaceImage::ColorspaceImage(char* filepath)
+ColorspaceImage::ColorspaceImage(const QString* filePath)
 {
-    std::cout << "In ColorspaceImage constructor, filename: " << filepath << std::endl;
+    const char* _filePath = filePath->toLocal8Bit().data();
+    //std::cout << "In ColorspaceImage constructor, filename: " << filepath << std::endl;
     try {
-
-        Image = imread(filepath, IMREAD_COLOR);
+        Image = imread(_filePath, IMREAD_COLOR);
         if (Image.empty())
             throw "Image could not be read. Adjust path or use a different image.\n";
     }  catch (const char* e) {
@@ -20,47 +20,55 @@ ColorspaceImage::ColorspaceImage(char* filepath)
     split(Image,ImageChannels);
 }
 
-void ColorspaceImage::saveImage()
+QImage ColorspaceImage::asQImage()
 {
-    std::cout << "Would you like to save your adjustments? [y/n]?" << std::endl;
-    char ans;
-    bool result = false;
-    std::cin >> ans;
-    if (ans == 'y' || ans == 'Y')
-    {
-        Mat img = getImage();
-        img.convertTo(img,CV_8U);
-
-        std::string location;
-
-        do {
-            std::cout << "Specify a full path to the file with the extension.\n" \
-                        "Type 'exit' at any time to continue without saving." \
-                        << std::endl;
-            std::cin >> location;
-            if (location == "exit")
-                break;
-            try {
-                result = imwrite(location,img);
-            }  catch (const Exception& ex) {
-                fprintf(stderr, "Something went wrong saving the file.\n\n");
-            }
-        } while(result == false);
-    }
-    if (result == true)
-        std::cout << "Image saved. Goodbye." << std::endl;
-    else
-        std::cout << "Goodbye." << std::endl;
+    Mat temp;
+    Image.convertTo(temp, CV_8U);
+    cvtColor(temp, temp, cv::COLOR_BGR2RGB);
+    return QImage((unsigned char*)temp.data, temp.cols, temp.rows, QImage::Format_RGB888);
 }
 
-void ColorspaceImage::showImage() const
-{
-    Mat tempImg;
-    Image.convertTo(tempImg, CV_8U);
-    namedWindow("Image", WINDOW_AUTOSIZE);
-    imshow("Image",tempImg);
-    std::cout << "Image Displayed." << std::endl;
-}
+//void ColorspaceImage::saveImage()
+//{
+//    std::cout << "Would you like to save your adjustments? [y/n]?" << std::endl;
+//    char ans;
+//    bool result = false;
+//    std::cin >> ans;
+//    if (ans == 'y' || ans == 'Y')
+//    {
+//        Mat img = getImage();
+//        img.convertTo(img,CV_8U);
+//
+//        std::string location;
+//
+//        do {
+//            std::cout << "Specify a full path to the file with the extension.\n" \
+//                        "Type 'exit' at any time to continue without saving." \
+//                        << std::endl;
+//            std::cin >> location;
+//            if (location == "exit")
+//                break;
+//            try {
+//                result = imwrite(location,img);
+//            }  catch (const Exception& ex) {
+//                fprintf(stderr, "Something went wrong saving the file.\n\n");
+//            }
+//        } while(result == false);
+//    }
+//    if (result == true)
+//        std::cout << "Image saved. Goodbye." << std::endl;
+//    else
+//        std::cout << "Goodbye." << std::endl;
+//}
+
+//void ColorspaceImage::showImage() const
+//{
+//    Mat tempImg;
+//    Image.convertTo(tempImg, CV_8U);
+//    namedWindow("Image", WINDOW_AUTOSIZE);
+//    imshow("Image",tempImg);
+//    std::cout << "Image Displayed." << std::endl;
+//}
 
 //void ColorspaceImage::operator=(const ColorspaceImage& src)
 //{

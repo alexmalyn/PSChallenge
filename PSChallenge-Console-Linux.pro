@@ -25,7 +25,8 @@ SOURCES += \
 INCLUDEPATH += \
         /usr/local/include/opencv4
 
-RESOURCES +=
+RESOURCES += \
+    res.qrc
 
 ## Default rules for deployment.
 #qnx: target.path = /tmp/$${TARGET}/bin
