@@ -30,6 +30,8 @@ RESOURCES += \
 
 unix: LIBS += -Lusr/local/lib/ -lopencv_core -lopencv_imgproc -lopencv_highgui -lopencv_imgcodecs
 
-
-
-
+DESTDIR = build
+OBJECTS_DIR = build/.obj
+MOC_DIR = build/.moc
+RCC_DIR = build/.rcc
+UI_DIR = build/.ui

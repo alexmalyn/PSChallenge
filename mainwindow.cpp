@@ -51,7 +51,7 @@ void MainWindow::satChanged()
 void MainWindow::openFile()
 {
     fileName = QFileDialog::getOpenFileName(this,
-       tr("Open Image"), ".", tr("Image Files (*.png *.jpg *.bmp *.jpeg)"));
+       tr("Open Image"), "/home", tr("Image Files (*.png *.jpg *.bmp *.jpeg)"));
     if (fileName.isEmpty())
         return;
 
